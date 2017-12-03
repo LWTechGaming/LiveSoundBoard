@@ -1,0 +1,45 @@
+{
+  "name": "livesoundboard",
+  "version": "1.0.0",
+  "description": "A soundboard application I created for my school for use in a Christmas theatrical performance.",
+  "main": "./src/app.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "eslint .",
+    "rebuild": "./node_modules/.bin/electron-rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LWTechGaming/LiveSoundBoard.git"
+  },
+  "author": "Linus Willner <hello@linuswillner.me> (https://linuswillner.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LWTechGaming/LiveSoundBoard/issues"
+  },
+  "homepage": "https://github.com/LWTechGaming/LiveSoundBoard#readme",
+  "devDependencies": {
+    "devtron": "^1.4.0",
+    "electron": "^1.7.9",
+    "electron-packager": "^10.1.0",
+    "electron-rebuild": "^1.6.0",
+    "electron-winstaller": "^2.6.3",
+    "eslint": "^4.12.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "dependencies": {
+    "about-window": "^1.8.0",
+    "audio-loader": "^1.0.3",
+    "audio-play": "^2.2.0",
+    "audio-speaker": "^1.5.0",
+    "electron-debug": "^1.4.0",
+    "electron-unhandled": "^0.2.0",
+    "jquery": "^3.2.1",
+    "lokijs": "^1.5.1",
+    "speaker": "^0.4.0"
+  }
+}

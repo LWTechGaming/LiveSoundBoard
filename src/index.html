@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Live Sound Board</title>
+
+  <!-- CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <!-- JS -->
+  <script src="js/jquery-3.2.1.js"></script>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/hammer.min.js"></script>
+</head>
+<body>  
+
+  <!-- Top bar -->
+  <nav class="blue darken-4" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" class="brand-logo">Live Sound Board</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="modal-trigger waves-effect waves-light" href="#config-modal">Config</a></li>
+        <li><a class="modal-trigger waves-effect waves-light" href="#about-modal">About</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h2 class="header center indigo-text">Sounds</h2>
+      <br><br>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!-- Mainframe -->
+      <div class="row">
+        <div class="col s6">
+          <h5>Status</h5>
+          <ul class="collection">
+            <li class="collection-item avatar">
+              <i class="material-icons waves-effect waves-light circle grey" id="sound-indicator" onclick="sounds.soundCheck()">clear</i>
+              <span class="title" id="sound-title">Not ready</span>
+              <p id="sound-status">Sound check has not been performed</p>
+            </li>
+          </ul>
+          <p><b>To load sound a sound, click on a play button in the bar to the right.</b></p>
+        </div>
+        <div class="col s6">
+          <h5>Sound list</h5>
+          <ul class="collection scrollable" id="sounds-list">
+            <!-- Auto-generated -->
+          </ul>
+          <p>
+            <a class="modal-trigger waves-effect waves-light btn indigo" href="#addsound-modal">Add sounds</a>
+            <a class="waves-effect waves-light btn indigo" onclick="db.clearSounds(); html.get('sounds-list').innerHTML = ''; Materialize.toast('Sound list cleared', 5000)">Clear list</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <br><br>
+  </div>
+
+  <!-- MODALS -->
+  <!-- About -->
+  <div id="about-modal" class="modal">
+    <div class="modal-content">
+      <h4 class="center">About Live Sound Board</h4>
+      <p>Live Sound Board is an application that I originally built for Lovisa Gymnasium's Christmas play. We needed a custom-made sound board, and any pre-made program wasn't going to cut it.</p>
+      <p>Thus, I set about making this program. Here's a list of programs and frameworks used to make it.</p>
+      <p>
+        <h5>Frameworks</h5>
+        <b>Electron</b> - Desktop application framework<br>
+        <b>Materialize</b> - User interface design<br>
+        <h5>NPM modules</h5>
+        <b>sound-board</b> - Sound downloading and playing<br>
+      </p>
+      <h5>Source code</h5>
+      <p>This project is open source and the source code is available on <a href="https://github.com/LWTechGaming/LiveSoundBoard">GitHub</a>.</p>
+      <p>Copyright (c) 2017 Linus Willner. Licensed under the MIT license.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">Close</a>
+    </div>
+  </div>
+
+  <!-- Configuration -->
+  <div id="config-modal" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Configuration</h4>
+      <p>Insert config here</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">Close</a>
+    </div>
+  </div>
+
+  <!-- Add sound -->
+  <div id="addsound-modal" class="modal">
+    <div class="modal-content">
+      <h4>Add sounds</h4>
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Sound" id="sound-files" type="file" onchange="renderer.fileAdded(this.id, this.files); Materialize.toast('Sounds added', 5000)" multiple>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat" onclick="html.get('sound-files').value = ''">Close</a>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script>
+    var renderer = require('./renderer.js')
+    var html = require('./js/html.js')
+    var page = require('./js/page.js')
+    var sounds = require('./js/sounds.js')
+    var db = require('./db/database.js')
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+node_modules/*
+releases/*
+dist/*
+
+materialize.js
+jquery-3.2.1.js
+init.js
+
+*.min.js
+*.json
+*.log
+*.md
+*.html
+*.db

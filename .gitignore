@@ -1,0 +1,10 @@
+# NPM
+node_modules
+npm-debug.log
+
+# App dirs
+releases
+dist
+
+# Other
+data.db
