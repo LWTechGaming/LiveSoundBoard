@@ -1,4 +1,4 @@
-const path = require('path')
+const html = require('./js/html.js')
 const sounds = require('./js/sounds.js')
 const db = require('./db/database.js')
 const Dispatcher = require('./js/dispatcher.js').Dispatcher
@@ -39,5 +39,15 @@ Events.on('remove-sound', filename => {
   if (query === 0) console.log(`File record ${filename} was not removed from database - not found.`)
 })
 
+// Other functions
+
+function loaded () {
+  html.get('loader').setAttribute('style', 'display:none;')
+  html.get('navbar').removeAttribute('style')
+  html.get('index-banner').removeAttribute('style')
+  html.get('container').removeAttribute('style')
+}
+
 exports.fileAdded = fileAdded
 exports.fileRemoved = fileRemoved
+exports.loaded = loaded

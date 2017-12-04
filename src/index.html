@@ -17,10 +17,24 @@
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/hammer.min.js"></script>
 </head>
-<body>  
+
+<body onload="renderer.loaded(); fadeIn()">
+
+  <!-- Preloader -->
+  <div class="preloader-wrapper big active centered" id="loader">
+    <div class="spinner-layer spinner-blue-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- Top bar -->
-  <nav class="blue darken-4" role="navigation">
+  <nav class="blue darken-4" id="navbar" role="navigation" style="display:none;">
     <div class="nav-wrapper container"><a id="logo-container" class="brand-logo">Live Sound Board</a>
       <ul class="right hide-on-med-and-down">
         <li><a class="modal-trigger waves-effect waves-light" href="#config-modal">Config</a></li>
@@ -28,8 +42,8 @@
       </ul>
     </div>
   </nav>
-  
-  <div class="section no-pad-bot" id="index-banner">
+
+  <div class="section no-pad-bot" id="index-banner" style="display:none;">
     <div class="container">
       <h2 class="header center indigo-text">Sounds</h2>
       <br><br>
@@ -37,7 +51,7 @@
   </div>
 
 
-  <div class="container">
+  <div class="container" id="container" style="display:none;">
     <div class="section">
 
       <!-- Mainframe -->
@@ -60,7 +74,7 @@
           </ul>
           <p>
             <a class="modal-trigger waves-effect waves-light btn indigo" href="#addsound-modal">Add sounds</a>
-            <a class="waves-effect waves-light btn indigo" onclick="db.clearSounds(); html.get('sounds-list').innerHTML = ''; Materialize.toast('Sound list cleared', 5000)">Clear list</a>
+            <a class="waves-effect waves-light btn indigo" onclick="db.clearSounds(); document.getElementById('sounds-list').innerHTML = ''; Materialize.toast('Sound list cleared', 5000)">Clear list</a>
           </p>
         </div>
       </div>
@@ -126,11 +140,19 @@
   <script src="js/init.js"></script>
   <script>
     var renderer = require('./renderer.js')
-    var html = require('./js/html.js')
     var page = require('./js/page.js')
     var sounds = require('./js/sounds.js')
     var db = require('./db/database.js')
   </script>
+  <script>
+    // It is mandatory to include this function in the document to access Materialize
+    function fadeIn () {
+      Materialize.fadeInImage('#navbar')
+      Materialize.fadeInImage('#index-banner')
+      Materialize.fadeInImage('#container')
+    }
+  </script>
 
 </body>
+
 </html>
