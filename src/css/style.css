@@ -15,7 +15,7 @@
 
 .scrollable {
   height: 330px; /* Page is not scrollable now */
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 

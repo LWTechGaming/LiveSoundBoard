@@ -1,12 +1,14 @@
 {
   "name": "livesoundboard",
+  "productName": "Live Sound Board",
   "version": "1.0.0",
-  "description": "A soundboard application I created for my school for use in a Christmas theatrical performance.",
+  "description": "A soundboard application I created for my school for use in a Christmas play.",
   "main": "./src/app.js",
   "scripts": {
     "start": "electron .",
     "test": "eslint .",
-    "rebuild": "./node_modules/.bin/electron-rebuild"
+    "rebuild": "electron-rebuild",
+    "pack": "electron-rebuild && electron-packager . --platform=win32 --arch=x64 --out=dist --asar --icon=src/res/mixer.ico"
   },
   "repository": {
     "type": "git",
@@ -35,7 +37,6 @@
     "about-window": "^1.8.0",
     "audio-loader": "^1.0.3",
     "audio-play": "^2.2.0",
-    "audio-speaker": "^1.5.0",
     "electron-debug": "^1.4.0",
     "electron-unhandled": "^0.2.0",
     "jquery": "^3.2.1",

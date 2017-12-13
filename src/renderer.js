@@ -1,6 +1,7 @@
 const html = require('./js/html.js')
 const sounds = require('./js/sounds.js')
 const db = require('./db/database.js')
+const log = require('./js/logger.js').log
 const Dispatcher = require('./js/dispatcher.js').Dispatcher
 const Events = new Dispatcher()
 
@@ -28,15 +29,15 @@ Events.on('file-removed', fileid => {
 
 Events.on('load-sound', filelist => {
   for (let i = 0; i < filelist.length; i++) {
-    // The regex fixes the path issues on Windows
+    // Replace backslashes with slashes to avoid strings breaking
     let query = db.storeSound(filelist[i].name, filelist[i].path.replace(/\\/g, '/'), filelist[i].type)
-    if (query === false) console.error(`Unable to load file ${filelist[i].name} - unsupported format.`)
+    if (query === false) log('error', `Unable to load file ${filelist[i].name} - unsupported format.`)
   }
 })
 
 Events.on('remove-sound', filename => {
   let query = db.removeSound(filename)
-  if (query === 0) console.log(`File record ${filename} was not removed from database - not found.`)
+  if (query === 0) log('warn', `File record ${filename} was not removed from database - not found.`)
 })
 
 // Other functions

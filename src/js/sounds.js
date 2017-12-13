@@ -1,28 +1,24 @@
-const play = require('audio-play')
-const load = require('audio-loader')
-const db = require('../db/database.js')
 const html = require('./html.js')
 const page = require('./page.js')
-
-function playSound (soundpath, soundname) {
-  page.updatePlayerStatus('playing', soundname)
-  load(soundpath).then((buffer) => {
-    play(buffer, {
-      volume: 100,
-      rate: 1
-    }, () => { page.updatePlayerStatus('ready') }).play()
-  })
-}
+const log = require('./logger.js').log
+const path = require('path')
+const load = require('audio-loader')
+const play = require('audio-play/browser')
 
 function soundCheck () {
-  page.updatePlayerStatus('checking')
-  playSound('./src/res/soundtest.wav', './src/res/soundtest.wav') // The path here is relative to main app file
+  log('info', 'Performing sound check')
+  load(path.resolve(__dirname, '..', 'res', 'soundtest.wav')).then(buffer => {
+    play(buffer, {
+      rate: 1,
+      volume: 0.7
+    }, () => { log('log', 'Sound check succeeded programmatically') }).play()
+  })
 }
 
 function addSound (inputid) {
   let fileList = html.get(inputid).files
   for (let i = 0; i < fileList.length; i++) {
-    page.addSoundItem(fileList[i].name)
+    page.addSoundItem(fileList[i].name, fileList[i].path)
   }
 }
 
@@ -31,15 +27,6 @@ function removeSound (inputid) {
   return toRemove.parentNode.removeChild(toRemove)
 }
 
-function loadSound (soundname) {
-  let icon = html.get('sound-indicator')
-  let sound = db.getSound(soundname)
-  icon.setAttribute('onclick', `sounds.playSound('${sound.path}', '${sound.name}')`)
-  page.updatePlayerStatus('ready', sound.name)
-}
-
 exports.addSound = addSound
 exports.removeSound = removeSound
-exports.loadSound = loadSound
-exports.playSound = playSound
 exports.soundCheck = soundCheck
