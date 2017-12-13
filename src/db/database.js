@@ -4,7 +4,7 @@ const sounds = db.addCollection('sounds')
 
 function storeSound (filename, filepath, filetype) {
   if (_checkFileType(filetype) !== false) {
-    return sounds.insert({ name: filename, path: filepath }) // Fix Windows path issue
+    return sounds.insert({ name: filename, path: filepath })
   } else {
     return false
   }
@@ -50,11 +50,11 @@ exports.removeSound = removeSound
 exports.clearSounds = clearSounds
 
 /* EXAMPLE FILE OBJECT
-lastModified: 1471784746362
-lastModifiedDate: Sun Aug 21 2016 16:05:46 GMT+0300 (FLE Summer Time)
-name: "DOOT.mp3"
-path: "C:\Users\<user>\Music\Sounds\DOOT.mp3"
-size: 43680
-type: "audio/mp3"
-webkitRelativePath: ""
+  lastModified: 1471784746362
+  lastModifiedDate: Sun Aug 21 2016 16:05:46 GMT+0300 (FLE Summer Time)
+  name: "DOOT.mp3"
+  path: "C:\Users\%USER%\Music\Sounds\DOOT.mp3"
+  size: 43680
+  type: "audio/mp3"
+  webkitRelativePath: ""
 */

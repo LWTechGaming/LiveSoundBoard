@@ -1,14 +1,17 @@
 const html = require('./html.js')
 const page = require('./page.js')
+const log = require('./logger.js').log
+const path = require('path')
 const load = require('audio-loader')
 const play = require('audio-play/browser')
 
 function soundCheck () {
-  load('http://images.lwtechgaming.me/UncAJ9t.wav').then(buffer => {
+  log('info', 'Performing sound check')
+  load(path.resolve(__dirname, '..', 'res', 'soundtest.wav')).then(buffer => {
     play(buffer, {
-      volume: 100,
-      rate: 1
-    }, () => page.updatePlayerStatus('ready')).play()
+      rate: 1,
+      volume: 0.7
+    }, () => { log('log', 'Sound check succeeded programmatically') }).play()
   })
 }
 
