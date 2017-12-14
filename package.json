@@ -8,7 +8,8 @@
     "start": "electron .",
     "test": "eslint .",
     "rebuild": "electron-rebuild",
-    "pack": "electron-rebuild && electron-packager . --platform=win32 --arch=x64 --out=dist --asar --icon=src/res/mixer.ico"
+    "pack": "mkdir dist && electron-rebuild && electron-packager . --platform=win32 --arch=x64 --out=dist --asar --icon=src/res/mixer.ico --overwrite",
+    "build": "node build.js"
   },
   "repository": {
     "type": "git",
@@ -35,8 +36,10 @@
   },
   "dependencies": {
     "about-window": "^1.8.0",
+    "archiver": "^2.1.0",
     "audio-loader": "^1.0.3",
     "audio-play": "^2.2.0",
+    "colors": "^1.1.2",
     "electron-debug": "^1.4.0",
     "electron-unhandled": "^0.2.0",
     "jquery": "^3.2.1",

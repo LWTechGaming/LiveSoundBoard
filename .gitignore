@@ -2,9 +2,9 @@
 node_modules
 npm-debug.log
 
-# App dirs
-releases
+# App build folders
 dist
+releases
 
 # Other
 data.db

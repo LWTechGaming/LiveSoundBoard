@@ -15,3 +15,11 @@ The application itself is backed by [Electron](https://electronjs.org/), the cro
 The audio systems are accomplished with plain HTML WebAudio, but the sound check system uses Node.js components. These are namely [audio-loader](https://github.com/audiojs/audio-loader) and [audio-play](https://github.com/audiojs/audio-play) from the audio.js team.
 
 [Lokijs](http://lokijs.org) is used for storage of sound data, used mainly when removing elements.
+
+## Licenses
+
+All licenses can be found in the [licenses](licenses) folder.
+
+**Live Sound Board** © 2017 [Linus Willner](https://github.com/LWTechGaming). MIT license.
+**Materialize** © 2014-2017 [Materialize](http://materializecss.com). MIT license.
+**Materialize Starter** © 2014 [Materialize](http://materializecss.com). MIT license.
