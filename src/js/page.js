@@ -7,7 +7,8 @@ function addSoundItem (filename, filepath) {
   let span = document.createElement('span')
   let b = document.createElement('b')
   let a = document.createElement('a')
-  let p = document.createElement('p')
+  let p1 = document.createElement('p')
+  let p2 = document.createElement('p')
 
   // Prepare elements
   // List item
@@ -25,8 +26,13 @@ function addSoundItem (filename, filepath) {
   li.appendChild(span)
   span.appendChild(b)
   b.innerHTML = filename
-  span.appendChild(p)
-  p.innerHTML = `<audio controls><source src="${filepath}"></audio>`
+  span.appendChild(p1)
+  p1.innerHTML = `<audio controls id="audio-${filename}"><source src="${filepath}"></audio>`
+  span.appendChild(p2)
+  p2.innerHTML = `
+  <a class="waves-effect waves-light btn indigo" onclick="page.fadeOut('audio-${filename}'); log('info', 'Fading out ${filename}')">Fade out</a>
+  <a class="waves-effect waves-light btn indigo" onclick="document.getElementById('audio-${filename}').volume = 1; log('info', 'Fade reset on item ${filename}')">Reset fade</a>
+  `
   li.appendChild(a)
   a.innerHTML = '<i class="material-icons indigo-text">close</i>'
   ul.appendChild(li)
@@ -41,9 +47,19 @@ function resizeCollections () {
 function _detectWindowSize () {
   let h = window.screen.height
   let w = window.screen.width
-  if (w > 1366 && h > 768) return 330
+  if (w > 1366 && h > 768) return 380
   else if (w <= 1366 && h <= 768) return 290
 }
 
+function fadeOut (elementid) {
+  let elem = html.get(elementid)
+  let fadeAudio = setInterval(() => {
+    let newVol = elem.volume -= 0.01
+    newVol = newVol.toFixed(2)
+    if (elem.volume === 0.00) clearInterval(fadeAudio)
+    else elem.volume = newVol
+  }, 90)
+}
 exports.addSoundItem = addSoundItem
 exports.resizeCollections = resizeCollections
+exports.fadeOut = fadeOut
