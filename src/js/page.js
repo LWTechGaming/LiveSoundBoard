@@ -30,7 +30,7 @@ function addSoundItem (filename, filepath) {
   p1.innerHTML = `<audio controls id="audio-${filename}"><source src="${filepath}"></audio>`
   span.appendChild(p2)
   p2.innerHTML = `
-  <a class="waves-effect waves-light btn indigo" onclick="page.fadeOut('audio-${filename}'); log('info', 'Fading out ${filename}')">Fade out</a>
+  <a class="waves-effect waves-light btn indigo" onclick="page.fadeOut('audio-${filename}'); log('info', 'Fading out ${filename}')">Fade out (5 sec)</a>
   <a class="waves-effect waves-light btn indigo" onclick="document.getElementById('audio-${filename}').volume = 1; log('info', 'Fade reset on item ${filename}')">Reset fade</a>
   `
   li.appendChild(a)
@@ -56,9 +56,11 @@ function fadeOut (elementid) {
   let fadeAudio = setInterval(() => {
     let newVol = elem.volume -= 0.01
     newVol = newVol.toFixed(2)
-    if (elem.volume === 0.00) clearInterval(fadeAudio)
-    else elem.volume = newVol
-  }, 90)
+    if (elem.volume === 0.00) {
+      clearInterval(fadeAudio)
+      elem.pause()
+    } else elem.volume = newVol
+  }, 55)
 }
 exports.addSoundItem = addSoundItem
 exports.resizeCollections = resizeCollections
