@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LWTechGaming/LiveSoundBoard.git"
+    "url": "git+https://github.com/linuswillner.me/LiveSoundBoard.git"
   },
   "author": "Linus Willner <hello@linuswillner.me> (https://linuswillner.me)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LWTechGaming/LiveSoundBoard/issues"
+    "url": "https://github.com/linuswillner/LiveSoundBoard/issues"
   },
-  "homepage": "https://github.com/LWTechGaming/LiveSoundBoard#readme",
+  "homepage": "https://github.com/linuswillner/LiveSoundBoard#readme",
   "devDependencies": {
     "devtron": "^1.4.0",
     "electron": "^1.7.9",
